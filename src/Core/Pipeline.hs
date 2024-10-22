@@ -4,8 +4,6 @@ module Core.Pipeline where
 import GHC.Generics
 import Clash.Prelude
 
-import Data.Bool
-
 import Core.RegFile
 import Core.Decode
 import Core.ALU
@@ -43,12 +41,12 @@ calcForwardingAddress sourceAddr instr_2 instr_3
     | unpack (rd instr_3) == sourceAddr && enableRegWrite instr_3 = ForwardingSourceMem
     | otherwise                                                   = NoForwarding
 
-topEntity :: HiddenClockReset dom gated sync => Signal dom FromInstructionMem -> Signal dom FromDataMem -> (Signal dom ToInstructionMem, Signal dom ToDataMem)
+topEntity :: HiddenClockResetEnable dom => Signal dom FromInstructionMem -> Signal dom FromDataMem -> (Signal dom ToInstructionMem, Signal dom ToDataMem)
 topEntity fim fdm = (tim, tdm)
     where (tim, tdm, _) = pipeline fim fdm
 
 pipeline 
-    :: forall dom sync gated. HiddenClockReset dom gated sync
+    :: forall dom sync gated. HiddenClockResetEnable dom
     => Signal dom FromInstructionMem 
     -> Signal dom FromDataMem
     -> (Signal dom ToInstructionMem, Signal dom ToDataMem, Signal dom D.PipelineState)

@@ -3,8 +3,6 @@ module Core.Decode where
 
 import Clash.Prelude
 
-import Data.Bool
-
 import Core.ALU
 
 --
