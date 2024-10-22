@@ -46,7 +46,7 @@ topEntity fim fdm = (tim, tdm)
     where (tim, tdm, _) = pipeline fim fdm
 
 pipeline 
-    :: forall dom sync gated. HiddenClockResetEnable dom
+    :: forall dom . HiddenClockResetEnable dom
     => Signal dom FromInstructionMem 
     -> Signal dom FromDataMem
     -> (Signal dom ToInstructionMem, Signal dom ToDataMem, Signal dom D.PipelineState)
