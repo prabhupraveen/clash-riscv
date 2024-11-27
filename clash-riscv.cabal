@@ -132,12 +132,12 @@ test-suite test-library
   other-modules:
     CacheTest, Program, TestUtils
   build-depends:
+    riscv-isa,
+    clash-riscv,
     QuickCheck,
     clash-prelude-hedgehog,
     hedgehog,
     hspec,
     tasty >= 1.2 && < 1.5,
     tasty-hedgehog,
-    tasty-th,
-    riscv-isa,
-    clash-riscv
+    tasty-th
